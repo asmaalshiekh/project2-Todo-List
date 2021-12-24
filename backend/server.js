@@ -4,8 +4,9 @@ const app=express()
 const db= require('./db')
 const Todo= require('./todo')
 
+//console.log(Todo);
 
-console.log(Todo);
+
 app.get('/',(req,res)=>{
     res.json('GET / is Working')
 })

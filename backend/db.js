@@ -16,12 +16,11 @@ mongoose.connect(dbURI,options,()=>{
     console.log('MongoDB is CONNECTED....');
 })
 
-
 // EXTRA
 const db = mongoose.connection;
 db.on("error", (err) => {
     console.log(err.message + " ERROR in MongoDB..");
 });
 db.on("connected", (err) => {
-    console.log("MongoDB is CONNECTED..");
+    console.log("MongoDB is CONNECTED No ERROR..");
 })
