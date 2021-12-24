@@ -12,6 +12,7 @@ app.get('/',(req,res)=>{
     res.json('GET / is Working')
 })
 
+//CRUD: Create, Read, Update, Delete 
 
 app.get('/tasks',(req,res)=>{
     Todo.find({},(err,data)=> { 
@@ -22,6 +23,42 @@ app.get('/tasks',(req,res)=>{
         }
     })
 })
+//              ?key=value&key=value
+app.get('/filter',(req,res)=>{
+    console.log(req.query);
+Todo.find({isCompleted: req.query.isCompleted},
+        (err,data)=>{
+        if(err){
+            console.log('ERROR', err);
+        }else{
+            console.log(data);
+            res.json(data) }
+    })
+})
+/* 
+   The up endpoint is replace to these tow
+app.get('/comleted',(req,res)=>{
+    Todo.find({isCompleted: true},(err,data)=>{
+        if(err){
+            console.log('ERROR', err);
+        }else{
+            console.log(data);
+            res.json(data)
+        }
+})
+})
+
+app.get('/not_comleted',(req,res)=>{
+    Todo.find({isCompleted: false},(err,data)=>{
+        if(err){
+            console.log('ERROR', err);
+        }else{
+            console.log(data);
+            res.json(data)
+        }
+})
+})
+*/
 
 
 app.post('/tasks',(req,res)=>{
