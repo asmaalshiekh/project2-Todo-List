@@ -48,7 +48,6 @@ app.delete('/tasks/:id',(req,res)=>{
             ? res.json("Delete one this Todo successfully")
             : res.status(404).json("This Todo is not Found")
            // console.log(deleteObj);
-           // res.json("Delete one this Todo successfully");
         }
    })
 })
@@ -68,7 +67,6 @@ app.put('/tasks/:id',(req,res)=>{
             updateObj.modifiedCount === 1
             ? res.json("UpDate one Todo successfully")
             : res.status(404).json("This Todo is not Found")
-           // 
            // res.json("Delete one this Todo successfully");
         }
    })
