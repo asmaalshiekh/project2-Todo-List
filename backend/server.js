@@ -47,7 +47,6 @@ app.get('/comleted',(req,res)=>{
         }
 })
 })
-
 app.get('/not_comleted',(req,res)=>{
     Todo.find({isCompleted: false},(err,data)=>{
         if(err){
@@ -89,6 +88,24 @@ app.delete('/tasks/:id',(req,res)=>{
    })
 })
 
+//      حذف أكثر من قيمة بوجود شرط معين وهو از كومبليتيد صحيحة
+app.delete('/tasks',(req,res)=>{
+    //console.log("37:", req.params.id);    
+
+    Todo.deleteMany({isCompleted: true},(err, deleteObj)=> { 
+        if(err){
+            console.log("ERROR: " , err);
+        }else{
+            // if ==> else in another statmente
+            console.log(deleteObj);
+            deleteObj.deletedCount === 0
+            ? res.status(404).json("There are  no completed Todo found")
+            : res.json("Delete all completed Todos Successfully")
+           // console.log(deleteObj);
+        }
+   })
+})
+
 
 app.put('/tasks/:id',(req,res)=>{
     //console.log("37:", req.params.id);    
@@ -109,6 +126,25 @@ app.put('/tasks/:id',(req,res)=>{
    })
 })
 
+
+app.put('/tasks/:id/:isCompleted',(req,res)=>{
+    console.log("131:", req.params);    
+    Todo.updateOne(
+        {_id:req.params.id},
+        {isCompleted:req.params.isCompleted},
+        (err, updateObj)=> { 
+        if(err){
+            console.log("ERROR: " , err);
+            res.status(400).json(err)
+        }else{
+            console.log(updateObj);
+            updateObj.modifiedCount === 1
+            ? res.json("UpDate one Todo successfully")
+            : res.status(404).json("This Todo is not Found")
+           // res.json("Delete one this Todo successfully");
+        }
+   })
+})
 
 /*
 app.get('/tasks',(req,res)=>{
