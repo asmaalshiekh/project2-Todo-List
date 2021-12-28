@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  border: red solid 5px;
+}
+
+.Todo{
+  border: blue solid 3px;
+}
+
+
+
+.App-link {
+  color: #61dafb;
+}
+
